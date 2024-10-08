@@ -28,7 +28,7 @@ jobs:
           pwd
           ls
           ./7zzs a golang.7z -r go
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: go-cloudflare2
           path: /home/runner/work/go/golang.7z
