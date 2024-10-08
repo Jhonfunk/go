@@ -1,15 +1,34 @@
-name: Go Toolchain Tests
+name: cloudflare-go-build
 on:
-  pull_request:
-  push:
-    branches:
-      - cf
-      - '*/cf-**'
+  workflow_dispatch:
+  
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Run tests
-        run: ./all.bash
-        working-directory: src
+      - uses: actions/checkout@v2
+#      - uses: actions/setup-go@v3
+#        with:
+#          go-version: '>=1.21.1'
+      - name: building golang
+        run: |
+          pwd
+          ls
+          cd src
+          go version
+          go env
+          ./make.bash
+          pwd
+          cd ../../
+          pwd
+          wget https://www.7-zip.org/a/7z2201-linux-x64.tar.xz
+          tar -xvf *.xz
+          rm *.xz
+          chmod +x 7zzs
+          pwd
+          ls
+          ./7zzs a golang.7z -r go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: go-cloudflare2
+          path: /home/runner/work/go/golang.7z
