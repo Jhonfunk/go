@@ -22,3 +22,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: go-cloudflare2
+          path: D:/a/go/golang.7z
